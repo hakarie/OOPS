@@ -9,20 +9,20 @@ public:
     Counter(int val = 0) : value(val) {}
 
     Counter& operator++() {
-        ++value;  // Increment the value
+        ++value;  
         return *this;
     }
 
     
     Counter operator++(int) {
-        Counter temp = *this;  // Save the current value
-        value++;  // Increment the value
-        return temp;  // Return the old value
+        Counter temp = *this;  
+        value++; 
+        return temp;  
     }
 
    
     Counter& operator--() {
-        --value;  // Decrement the value
+        --value;  
         return *this;
     }
 
