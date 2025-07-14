@@ -1,0 +1,19 @@
+import random
+import time
+import sys
+
+def randChar(start, end):
+    return chr(random.randint(ord(start), ord(end)))
+
+original_str = "To calculate the mean, find the sum of all values, and divide the sum by the number of values:"
+char_list = list(original_str)
+r = 6
+s = ['\0'] * len(char_list)
+
+for i in range(len(char_list)):
+    for _ in range(r):
+        s[i] = randChar('a', 'z')
+        print(''.join(s), end='\r', flush=True)  
+        time.sleep(0.1)
+    s[i] = char_list[i]
+    print(''.join(s), end='\r', flush=True) 
