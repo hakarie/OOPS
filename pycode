@@ -1,3 +1,5 @@
+PYTHON:
+
 import random
 import time
 import sys
@@ -17,3 +19,50 @@ for i in range(len(char_list)):
         time.sleep(0.1)
     s[i] = char_list[i]
     print(''.join(s), end='\r', flush=True) 
+
+
+JAVA:
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        scramblePrint("Hi how are you", 9, 50);
+    }
+
+    public static void scramblePrint(String original, int scrambleCount, int delayMillis) {
+        char[] charList = original.toCharArray();
+        char[] s = new char[charList.length];
+        Random random = new Random();
+
+        for (int i = 0; i < charList.length; i++) {
+            if (Character.isLetter(charList[i])) {
+                // Scramble only letters
+                for (int j = 0; j < scrambleCount; j++) {
+                    s[i] = (char) (random.nextInt('z' - 'a' + 1) + 'a');
+                    System.out.print("\r" + paddedString(s));
+                    System.out.flush();
+                    try {
+                        Thread.sleep(delayMillis);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt(); // restore interrupt status
+                        return;
+                    }
+                }
+            }
+            s[i] = charList[i]; // reveal original character
+            System.out.print("\r" + paddedString(s));
+            System.out.flush();
+        }
+
+        System.out.println(); // move to next line after animation
+    }
+
+    // Utility method to pad the scrambled array for clean overwrite
+    private static String paddedString(char[] chars) {
+        StringBuilder builder = new StringBuilder();
+        for (char c : chars) {
+            builder.append(c == '\0' ? ' ' : c); // use space for uninitialized chars
+        }
+        return builder.toString();
+    }
+}
