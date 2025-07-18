@@ -38,7 +38,10 @@ public class Main {
             if (Character.isLetter(charList[i])) {
                 // Scramble only letters
                 for (int j = 0; j < scrambleCount; j++) {
-                    s[i] = (char) (random.nextInt('z' - 'a' + 1) + 'a');
+                    // s[i] = (char) (random.nextInt('z' - 'a' + 1) + 'a');
+                    for(int k = i; k < s.length; k++){
+                        s[k] = (char) (random.nextInt('z' - 'a' + 1) + 'a');
+                    }
                     System.out.print("\r" + paddedString(s));
                     System.out.flush();
                     try {
